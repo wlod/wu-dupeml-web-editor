@@ -1,0 +1,6 @@
+#app {
+
+   background-size: 50px 50px;
+   background-image: radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px);
+   height: 100vh;
+}
