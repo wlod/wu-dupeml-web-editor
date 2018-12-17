@@ -36,7 +36,7 @@ function run(time, attempt) {
    } else {
       console.info("Wait 50 milliseconds and try again to load all dependencies files.");
       inAttempt--;
-      setTimeout(() => { run(inAttempt, inTime); }, inTime);
+      setTimeout(() => { run(inAttempt, time); }, time);
       
    }
 }
