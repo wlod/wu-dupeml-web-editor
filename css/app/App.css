@@ -8,6 +8,8 @@
 .box {
    border: 1px solid #000;
    background-color: #DDD;
+   cursor: move;
+   opacity: 0.75;
 }
 
 .box:after {
@@ -21,4 +23,8 @@
    border-radius: 50%;
    margin-left: -2px;
    margin-top: -2px;
+}
+
+.line {
+   background-color: #000;
 }

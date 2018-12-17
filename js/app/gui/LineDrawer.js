@@ -6,17 +6,39 @@ class LineDrawer {
       this.domContainer = domContainer;
    }
    
-   line() {
-      // TODO add ID from_to - manage remove elements
+   line(id) {
       const line = document.createElement("div");
       line.style.width = "1" + APP_CONF_UI.UNIT;
       line.style.position = "absolute";
-      line.style.backgroundColor = "#000";
+      
+      line.className = "line";
+      
+      line.setAttribute("id", id);
+      
       this.domContainer.appendChild(line);
       return line;
    };
    
    adjustLine(from, to) {
+      const line = this.line(this._getId(from,to));
+      this._drawLine(from, to, line);
+      this._updateReferences(from, to, line);
+   };
+   
+   redrawLines(lineIds) {
+      lineIds.forEach(lineId => {
+         this.redrawLine(lineId);
+      })
+   };
+   
+   redrawLine(lineId) {
+      const from = WebUtil.byId(this._getNodeIdFrom(lineId));
+      const to = WebUtil.byId(this._getNodeIdTo(lineId));
+      const line = WebUtil.byId(lineId);
+      this._drawLine(from, to, line);
+   };
+   
+   _drawLine(from, to, line) {
       const fromTop = from.offsetTop + from.offsetHeight/2;
       const fromLeft = from.offsetLeft + from.offsetWidth/2;
       const toTop = to.offsetTop + to.offsetHeight/2;
@@ -54,7 +76,6 @@ class LineDrawer {
   
       const rotateValue = 'rotate(' + angle + 'deg)';
       
-      const line = this.line();
       line.style["-webkit-transform"] = rotateValue;
       line.style["-moz-transform"] = rotateValue;
       line.style["-ms-transform"] = rotateValue;
@@ -63,6 +84,31 @@ class LineDrawer {
       line.style.top    = top + 'px';
       line.style.left   = left + 'px';
       line.style.height = distance + 'px';
-   }
+   };
+   
+   _updateReferences(from, to, line) {
+      let currentNodeTo = from.getAttribute("data-node-to");
+      let currentNodeFrom = to.getAttribute("data-node-from");
+      let currentLinesTo = from.getAttribute("data-lines");
+      let currentLinesFrom = to.getAttribute("data-lines");
+      
+      from.setAttribute("data-node-to", to.id + "," + currentNodeTo);
+      to.setAttribute("data-node-from", from.id + "," + currentNodeFrom);
+      
+      to.setAttribute("data-lines", line.id + "," + currentLinesTo);
+      from.setAttribute("data-lines", line.id + "," + currentLinesFrom);
+   };
+   
+   _getId(from, to) {
+      return from.id + "_" + to.id;
+   };
+   
+   _getNodeIdFrom(lineId) {
+      return lineId.split("_")[0];
+   };
+   
+   _getNodeIdTo(lineId) {
+      return lineId.split("_")[1];
+   };
    
 }
