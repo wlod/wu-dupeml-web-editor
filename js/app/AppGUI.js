@@ -23,10 +23,10 @@ class AppGUI {
    
 }
 
-var runAttempt = 20;
-
-function run() {
-   if(runAttempt < 0) {
+function run(time, attempt) {
+   let inAttempt = (typeof attempt !== "undefined" && attempt !== null) ? attempt : 20;
+   
+   if(inAttempt < 0) {
       console.error("Can not initialized App GUI");
       return;
    }
@@ -34,12 +34,13 @@ function run() {
    if( appGUI.isAllObjectLoaded ) {
       appGUI.loadGUI();
    } else {
-      console.debug("Wait 50 milliseconds and try again to load all dependencies files.");
-      runAttempt--;
-      window.setTimeout( run, 50 );
+      console.info("Wait 50 milliseconds and try again to load all dependencies files.");
+      inAttempt--;
+      setTimeout(() => { run(inAttempt, inTime); }, inTime);
+      
    }
 }
 
 (function() {
-   run();
+   run(50, 15);
 })();
