@@ -13,14 +13,17 @@ class WebUtil {
     }
     
     /**
-       * Append js script file to DOM
+       * Append css file to DOM
        */
-    static appendStyleToDOM(path) {
-       const script = document.createElement("link");
-       script.setAttribute("rel","stylesheet");
-       script.setAttribute("type","text/css");
-       script.setAttribute("href", path);
-       document.getElementsByTagName("head")[0].appendChild(script);
+    static appendStyleToDOM(path, onloadFunction) {
+       const style = document.createElement("link");
+       style.setAttribute("rel","stylesheet");
+       style.setAttribute("type","text/css");
+       style.setAttribute("href", path);
+       if(typeof onloadFunction !== "undefined" && onloadFunction !== null) {
+          style.onload = onloadFunction;
+       }
+       document.getElementsByTagName("head")[0].appendChild(style);
     }
     
     /**

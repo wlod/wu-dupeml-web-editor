@@ -1,3 +1,5 @@
+"use strict";
+
 if (!Array.prototype.forEach) {
    Array.prototype.forEach = function(fun /* , thisp */) {
       var len = this.length;
