@@ -87,10 +87,10 @@ class LineDrawer {
    };
    
    _updateReferences(from, to, line) {
-      let currentNodeTo = from.getAttribute("data-node-to");
-      let currentNodeFrom = to.getAttribute("data-node-from");
-      let currentLinesTo = from.getAttribute("data-lines");
-      let currentLinesFrom = to.getAttribute("data-lines");
+      const currentNodeTo = from.getAttribute("data-node-to");
+      const currentNodeFrom = to.getAttribute("data-node-from");
+      const currentLinesFrom = from.getAttribute("data-lines");
+      const currentLinesTo = to.getAttribute("data-lines");
       
       from.setAttribute("data-node-to", to.id + "," + currentNodeTo);
       to.setAttribute("data-node-from", from.id + "," + currentNodeFrom);

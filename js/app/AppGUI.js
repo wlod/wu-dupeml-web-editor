@@ -20,11 +20,17 @@ class AppGUI {
    loadGUI() {
       let boxFrom = this.nodeDrawer.box(123,123);
       let boxTo = this.nodeDrawer.box(323,323);
+      
+      let boxExt = this.nodeDrawer.box(523,123);
+      
       this.lineDrawer.adjustLine(boxFrom, boxTo);
+      this.lineDrawer.adjustLine(boxExt, boxTo);
+      this.lineDrawer.adjustLine(boxExt, boxFrom);
       
       // TODO move to class with controller
       dragNode(boxFrom, this.lineDrawer);
       dragNode(boxTo, this.lineDrawer);
+      dragNode(boxExt, this.lineDrawer);
       
    }
    
