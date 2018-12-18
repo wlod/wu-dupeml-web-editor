@@ -9,8 +9,8 @@ class AppGUI {
          this.appContainer = WebUtil.byId(APP_CONF.APP_DOM_ID);
          this.nodeDrawer = new NodeDrawer(this.appContainer);
          this.lineDrawer = new LineDrawer(this.appContainer);
-         // TODO to remove
-         DragNodeLoaded();
+         this.menuController = new MenuController(this.appContainer);
+         this.dragNodeController = new DragNodeController(this.lineDrawer);
          this.isAllObjectLoaded = true;
       } catch (e) {
          console.debug(e);
@@ -27,11 +27,9 @@ class AppGUI {
       this.lineDrawer.adjustLine(boxExt, boxTo);
       this.lineDrawer.adjustLine(boxExt, boxFrom);
       
-      // TODO move to class with controller
-      dragNode(boxFrom, this.lineDrawer);
-      dragNode(boxTo, this.lineDrawer);
-      dragNode(boxExt, this.lineDrawer);
-      
+      this.dragNodeController.applyDraggable(boxFrom);
+      this.dragNodeController.applyDraggable(boxTo);
+      this.dragNodeController.applyDraggable(boxExt);
    }
    
 }

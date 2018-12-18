@@ -3,7 +3,8 @@
 const APP_CONF = {
       APP_DOM_ID : "app",
       APP_STYLES : [ "css/app/App.css" ],
-      APP_SCRIPTS : [ "js/app/gui/DragNode.js", "js/app/gui/NodeDrawer.js", "js/app/gui/LineDrawer.js", "js/app/AppGUI.js" ]
+      APP_SCRIPTS : [ "js/app/controller/DragNodeController.js", "js/app/controller/MenuController.js", "js/app/gui/NodeDrawer.js", "js/app/gui/LineDrawer.js",
+                  "js/app/AppGUI.js" ]
 };
 
 const APP_CONF_UI = {
