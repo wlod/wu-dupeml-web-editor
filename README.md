@@ -5,6 +5,10 @@ Simple editor to draggable and connect elements.
 Demo:
 - TODO
 
+How it works:
+
+ ![how-it-works](https://github.com/wlod/wu-dupeml-web-editor/blob/master/demo/demo.gif)
+
 ## Dependencies
 
 JS Libraries:

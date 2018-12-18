@@ -21,8 +21,8 @@ class NodeDrawer {
       box.style.height = APP_CONF_UI.NODE_BOX_HEIGHT + APP_CONF_UI.UNIT;
       box.style.width = APP_CONF_UI.NODE_BOX_WIDTH + APP_CONF_UI.UNIT;
       box.style.position = "absolute";
-      box.style.top = x + APP_CONF_UI.UNIT;
-      box.style.left = y + APP_CONF_UI.UNIT;
+      box.style.top = y + APP_CONF_UI.UNIT;
+      box.style.left = x + APP_CONF_UI.UNIT;
       
       box.className = NODE.box;
       
@@ -30,13 +30,18 @@ class NodeDrawer {
       box.setAttribute("data-node-from", "");
       box.setAttribute("data-node-to", "");
       box.setAttribute("data-lines", "");
+      box.setAttribute("data-type", NODE.box);
       
       this.domContainer.appendChild(box);
       return box;
    };
    
+   nodeCounter() {
+      return this.nodeCounter;
+   };
+   
    _getId(type) {
       return type + this.nodeCounter++;
-   }
+   };
  
 }
