@@ -4,18 +4,21 @@ class LineDrawer {
    
    constructor(domContainer) {
       this.domContainer = domContainer;
+      this.lineCounter = 0;
    }
    
    line(id) {
       const line = document.createElement("div");
       line.style.width = "1" + APP_CONF_UI.UNIT;
       line.style.position = "absolute";
+      line.style.zIndex = APP_CONF_UI.LINE_Z_INDEX + this.lineCounter;
       
       line.className = "line";
       
       line.setAttribute("id", id);
       
       this.domContainer.appendChild(line);
+      this.lineCounter++;
       return line;
    };
    

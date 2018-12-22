@@ -7,11 +7,13 @@ class AppGUI {
       this.isAllObjectLoaded = false;
       try {
          this.appContainer = WebUtil.byId(APP_CONF.APP_DOM_ID);
-         this.nodeDrawer = new NodeDrawer(this.appContainer);
+         this.nodeDrawer = new NodeDrawer(this);
          this.lineDrawer = new LineDrawer(this.appContainer);
-
+         
+         this.actionController = new ActionController();
          this.dragNodeController = new DragNodeController(this.lineDrawer);
          this.menuController = new MenuController(this);
+         this.nodeController = new NodeController(this);
          
          this.isAllObjectLoaded = true;
       } catch (e) {
@@ -25,9 +27,6 @@ class AppGUI {
       let boxTo = this.nodeDrawer.box(323,323);
       
       this.lineDrawer.adjustLine(boxFrom, boxTo);
-      
-      this.dragNodeController.applyDraggable(boxFrom);
-      this.dragNodeController.applyDraggable(boxTo);
    }
    
 }

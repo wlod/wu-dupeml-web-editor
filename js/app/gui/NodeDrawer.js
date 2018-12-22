@@ -8,8 +8,8 @@ const NODE = Object.freeze({"box":"box", "diamond":"diamond", "join_fork":"join-
  */
 class NodeDrawer {
    
-   constructor(domContainer) {
-      this.domContainer = domContainer;
+   constructor(appGUI) {
+      this.appGUI = appGUI;
       this.nodeCounter = 0;
    }
    
@@ -21,6 +21,7 @@ class NodeDrawer {
       box.style.height = APP_CONF_UI.NODE_BOX_HEIGHT + APP_CONF_UI.UNIT;
       box.style.width = APP_CONF_UI.NODE_BOX_WIDTH + APP_CONF_UI.UNIT;
       box.style.position = "absolute";
+      box.style.zIndex = APP_CONF_UI.NODE_Z_INDEX + this.nodeCounter;
       box.style.top = y + APP_CONF_UI.UNIT;
       box.style.left = x + APP_CONF_UI.UNIT;
       
@@ -32,7 +33,12 @@ class NodeDrawer {
       box.setAttribute("data-lines", "");
       box.setAttribute("data-type", NODE.box);
       
-      this.domContainer.appendChild(box);
+      
+      this.appGUI.dragNodeController.applyDraggable(box);
+      this.appGUI.nodeController.applyNodeController(box);
+      
+      this.appGUI.appContainer.appendChild(box);
+      this.nodeCounter++;
       return box;
    };
    
@@ -41,7 +47,7 @@ class NodeDrawer {
    };
    
    _getId(type) {
-      return type + this.nodeCounter++;
+      return type + this.nodeCounter;
    };
  
 }
