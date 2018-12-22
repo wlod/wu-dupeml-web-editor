@@ -13,4 +13,5 @@ const APP_CONF_UI = {
       NODE_BOX_WIDTH : 100,
       LINE_Z_INDEX : 50000,
       NODE_Z_INDEX : 10000,
+      NODE_MENU_Z_INDEX : 100000,
 };

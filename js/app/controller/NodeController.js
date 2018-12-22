@@ -7,19 +7,18 @@ class NodeController {
    };
    
    applyNodeController(node) {
-      node.addEventListener('dblclick', (e) => this._addNodeActions(e), false);
+      node.addEventListener('dblclick', (e) => this._addNodeActions(e, node), false);
    };
    
-   _addNodeActions(e) {
+   _addNodeActions(e, node) {
       if(this.appGUI.actionController.registerAndCheckIsAvailable(e, "node") === false) {
          return;
       }
       
-      const rect = e.target.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = e.clientX;
+      const y = e.clientY;
       
-      console.log("_addNodeActions", e);
+      this.appGUI.nodeDrawer.showHideBoxMenu(x,y,node.id);
    }
    
 }

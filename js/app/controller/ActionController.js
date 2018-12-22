@@ -19,7 +19,7 @@ class ActionController {
       }
       
       let isNew = false;
-      if(action == null || action === "undefined") {
+      if(action == null || typeof action === "undefined") {
          // clear actions for new one
          this.actions.clear();
          this.actions.set(actionIndex, name);
