@@ -11,9 +11,6 @@ class NodeDrawer {
    constructor(appGUI) {
       this.appGUI = appGUI;
       this.nodeCounter = 0;
-      
-      this.menuForNodes = new Map();
-      this._createBoxMenu();
    }
    
    /**
@@ -68,12 +65,17 @@ class NodeDrawer {
       return this.nodeCounter;
    };
    
-   _createBoxMenu() {
+   createBoxMenu() {
+      this.menuForNodes = new Map();
+      
       this.boxMenu = document.createElement("div");
       this.boxMenu.setAttribute("id", "box-menu");
       this.boxMenu.style.zIndex = APP_CONF_UI.NODE_MENU_Z_INDEX;
       this.boxMenu.style.position = "absolute";
       this.boxMenu.style.display = "none";
+      
+      this.appGUI.dragNodeController.applyDraggable(this.boxMenu);
+      
       this.appGUI.appContainer.appendChild(this.boxMenu);
    }
    

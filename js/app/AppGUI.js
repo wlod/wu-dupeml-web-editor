@@ -8,10 +8,10 @@ class AppGUI {
       try {
          this.appContainer = WebUtil.byId(APP_CONF.APP_DOM_ID);
          this.nodeDrawer = new NodeDrawer(this);
-         this.lineDrawer = new LineDrawer(this.appContainer);
+         this.lineDrawer = new LineDrawer(this);
          
          this.actionController = new ActionController();
-         this.dragNodeController = new DragNodeController(this.lineDrawer);
+         this.dragNodeController = new DragNodeController(this);
          this.menuController = new MenuController(this);
          this.nodeController = new NodeController(this);
          
@@ -22,6 +22,8 @@ class AppGUI {
    }
    
    loadGUI() {
+      this.nodeDrawer.createBoxMenu();
+      
       // TODO to remove - only for demo
       let boxFrom = this.nodeDrawer.box(123,123);
       let boxTo = this.nodeDrawer.box(323,323);

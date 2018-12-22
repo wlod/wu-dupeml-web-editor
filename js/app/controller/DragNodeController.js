@@ -2,8 +2,8 @@
 
 class DragNodeController {
 
-   constructor(lineDrawer) {
-      this.lineDrawer = lineDrawer;
+   constructor(appGUI) {
+      this.appGUI = appGUI;
    };
    
    applyDraggable(node) {
@@ -41,11 +41,15 @@ class DragNodeController {
       node.style.top = (node.offsetTop - node.pos2) + APP_CONF_UI.UNIT;
       node.style.left = (node.offsetLeft - node.pos1) + APP_CONF_UI.UNIT;
       
-      node.getAttribute("data-lines").split(",").forEach((line) => {
-         if(line.length > 0) { 
-            this.lineDrawer.redrawLine(line);
-         }
-      });
+      
+      if (node.hasAttribute("data-lines")) {
+         node.getAttribute("data-lines").split(",").forEach((line) => {
+            if(line.length > 0) { 
+               this.appGUI.lineDrawer.redrawLine(line);
+            }
+         });
+     }
+      
    };
    
    _closeDragElement() {

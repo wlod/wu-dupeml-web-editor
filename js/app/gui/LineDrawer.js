@@ -2,8 +2,8 @@
 
 class LineDrawer {
    
-   constructor(domContainer) {
-      this.domContainer = domContainer;
+   constructor(appGUI) {
+      this.appGUI = appGUI;
       this.lineCounter = 0;
    }
    
@@ -17,7 +17,7 @@ class LineDrawer {
       
       line.setAttribute("id", id);
       
-      this.domContainer.appendChild(line);
+      this.appGUI.appContainer.appendChild(line);
       this.lineCounter++;
       return line;
    };
