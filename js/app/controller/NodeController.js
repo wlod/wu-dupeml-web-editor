@@ -18,7 +18,7 @@ class NodeController {
       const x = e.clientX;
       const y = e.clientY;
       
-      this.appGUI.nodeDrawer.showHideBoxMenu(x,y,node.id);
+      this.appGUI.menuDrawer.showHideBoxMenu(x,y,node.id);
    }
    
 }

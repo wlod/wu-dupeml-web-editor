@@ -36,6 +36,8 @@
    -moz-border-radius: 4px 4px 4px 4px;
    -webkit-border-radius: 4px 4px 4px 4px;
    
+   cursor: move;
+   
    border: 1px solid #000;
    background-color: #EEE;
    

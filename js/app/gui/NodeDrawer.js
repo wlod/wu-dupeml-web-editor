@@ -1,5 +1,6 @@
 "use strict";
 
+// TODO create ELEMENT factory, getId, "data-type" itd.
 const NODE = Object.freeze({"box":"box", "diamond":"diamond", "join_fork":"join-fork", "note":"note", "interface":"interface"});
 
 /**
@@ -42,42 +43,9 @@ class NodeDrawer {
       return box;
    };
    
-   /**
-    * Show or hide Box Menu
-    */
-   showHideBoxMenu(x, y, nodeId) {
-      if(typeof this.menuForNodes.get(nodeId) === "undefined") {
-         this.menuForNodes.clear();
-         this.boxMenu.style.display = "block";
-         this.menuForNodes.set(nodeId, 1);
-      } else {
-         this.boxMenu.style.display = "none";
-         this.menuForNodes.delete(nodeId);
-      }
-      
-      this.boxMenu.style.top = y + APP_CONF_UI.UNIT;
-      this.boxMenu.style.left = x + APP_CONF_UI.UNIT;
-      
-      return this.boxMenu;
-   }
-   
    nodeCounter() {
       return this.nodeCounter;
    };
-   
-   createBoxMenu() {
-      this.menuForNodes = new Map();
-      
-      this.boxMenu = document.createElement("div");
-      this.boxMenu.setAttribute("id", "box-menu");
-      this.boxMenu.style.zIndex = APP_CONF_UI.NODE_MENU_Z_INDEX;
-      this.boxMenu.style.position = "absolute";
-      this.boxMenu.style.display = "none";
-      
-      this.appGUI.dragNodeController.applyDraggable(this.boxMenu);
-      
-      this.appGUI.appContainer.appendChild(this.boxMenu);
-   }
    
    _getId(type) {
       return type + this.nodeCounter;
