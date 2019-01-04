@@ -15,8 +15,9 @@ class NodeController {
          return;
       }
       
-      const x = e.clientX;
-      const y = e.clientY;
+      // TODO calculate range and display in correct place top, right, bottom, left.
+      const x = node.getBoundingClientRect().right - AppGUIUtil.normalizeValue(node.style.width)/2;
+      const y = node.getBoundingClientRect().top;
       
       this.appGUI.menuDrawer.showHideBoxMenu(x,y,node.id);
    }
