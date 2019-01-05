@@ -6,6 +6,10 @@
    z-index: 10;
 }
 
+a {
+   cursor: pointer;
+}
+
 .box {
    border: 1px solid #000;
    background-color: #DDD;
