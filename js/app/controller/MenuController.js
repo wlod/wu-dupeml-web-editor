@@ -19,7 +19,7 @@ class MenuController {
       const x = e.clientX;
       const y = e.clientY;
       
-      this.appGUI.menuDrawer.showHideBoxMenu(x,y,BOX_MENU_ID);
+      this.appGUI.menuDrawer.showHideBoxMenuByNode(x,y,WebUtil.byId(BOX_MENU_ID));
    }
    
 }

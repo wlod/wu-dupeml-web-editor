@@ -7,9 +7,9 @@ class DragNodeController {
    };
    
    applyDraggable(node) {
-      node.pos1 = 0; 
-      node.pos2 = 0; 
-      node.pos3 = 0; 
+      node.pos1 = 0;
+      node.pos2 = 0;
+      node.pos3 = 0;
       node.pos4 = 0;
       node.addEventListener('mousedown', (e) => this._dragMouseDown(e, node));
    };
@@ -21,6 +21,12 @@ class DragNodeController {
       // get the mouse cursor position at startup:
       node.pos3 = e.clientX;
       node.pos4 = e.clientY;
+      if (this.appGUI.menuDrawer.isForNode(node)) {
+         const boxMenuNode = this.appGUI.menuDrawer.boxMenu;
+         boxMenuNode.pos3 = e.clientX;
+         boxMenuNode.pos4 = e.clientY;
+         this._redrawNode(e, boxMenuNode);
+      }
       document.onmouseup = (e) => this._closeDragElement();
       
       // call a function whenever the cursor moves:
@@ -28,6 +34,24 @@ class DragNodeController {
    };
    
    _elementDrag(e, node) {
+      
+      this._redrawNode(e, node);
+      
+      if (node.hasAttribute("data-lines")) {
+         node.getAttribute("data-lines").split(",").forEach((line) => {
+            if(line.length > 0) { 
+               this.appGUI.lineDrawer.redrawLine(line);
+            }
+         });
+      }
+      
+      if (this.appGUI.menuDrawer.isForNode(node)) {
+         this._redrawNode(e, this.appGUI.menuDrawer.boxMenu);
+      }
+      
+   };
+   
+   _redrawNode(e, node) {
       e = e || window.event;
       e.preventDefault();
       
@@ -40,16 +64,6 @@ class DragNodeController {
       // set the element's new position:
       node.style.top = (node.offsetTop - node.pos2) + APP_CONF_UI.UNIT;
       node.style.left = (node.offsetLeft - node.pos1) + APP_CONF_UI.UNIT;
-      
-      
-      if (node.hasAttribute("data-lines")) {
-         node.getAttribute("data-lines").split(",").forEach((line) => {
-            if(line.length > 0) { 
-               this.appGUI.lineDrawer.redrawLine(line);
-            }
-         });
-     }
-      
    };
    
    _closeDragElement() {

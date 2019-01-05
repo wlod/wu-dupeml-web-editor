@@ -19,7 +19,7 @@ class NodeController {
       const x = node.getBoundingClientRect().right - AppGUIUtil.normalizeValue(node.style.width)/2;
       const y = node.getBoundingClientRect().top;
       
-      this.appGUI.menuDrawer.showHideBoxMenu(x,y,node.id);
+      const menuBox = this.appGUI.menuDrawer.showHideBoxMenuByNode(x,y,node);
    }
    
 }
