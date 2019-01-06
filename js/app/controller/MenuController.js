@@ -7,12 +7,19 @@ class MenuController {
       this._applyMenuController();
    };
    
+   removeNode(node) {
+      
+      this.appGUI.lineController.removeLines(node);
+      node.remove();
+      
+   }
+   
    _applyMenuController() {
       this.appGUI.appContainer.addEventListener('dblclick', (e) => this._showHideBoxMenu(e), false);
    };
    
    _showHideBoxMenu(e) {
-      if(this.appGUI.actionController.registerAndCheckIsAvailable(e, "menu") === false) {
+      if(this.appGUI.actionController.registerAndCheckIsAvailable(e, NODE.menu) === false) {
          return;
       }
       

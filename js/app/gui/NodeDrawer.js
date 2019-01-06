@@ -1,7 +1,7 @@
 "use strict";
 
 // TODO create ELEMENT factory, getId, "data-type" itd.
-const NODE = Object.freeze({"box":"box", "diamond":"diamond", "join_fork":"join-fork", "note":"note", "interface":"interface"});
+const NODE = Object.freeze({"box":"box", "diamond":"diamond", "join_fork":"join-fork", "note":"note", "interface":"interface", "menu":"menu"});
 
 /**
  * Available nodes: - box - diamond - join-fork - note - interface

@@ -25,8 +25,7 @@ class MenuDrawer {
          this.boxMenu.setAttribute("data-menu-for-node", node.id);
          this.menuForNodes.set(node.id, 1);
          
-         this._addActionsForNode(node);
-         
+         this._init(node);
       } else if(type !== "menu") {
          this._hideMenu(node);
       }
@@ -43,7 +42,7 @@ class MenuDrawer {
       this.boxMenu = document.createElement("div");
       this.boxMenu.setAttribute("id", BOX_MENU_ID);
       // TODO use element factory
-      this.boxMenu.setAttribute("data-type", "menu");
+      this.boxMenu.setAttribute("data-type", NODE.menu);
       this.boxMenu.setAttribute("data-menu-for-node", "");
       
       this.boxMenu.style.zIndex = APP_CONF_UI.NODE_MENU_Z_INDEX;
@@ -59,32 +58,70 @@ class MenuDrawer {
       return this.boxMenu.getAttribute("data-menu-for-node") === node.id;
    }
    
-   _addActionsForNode(node) {
-      const type = node.getAttribute("data-type");
+   _init(node) {
       
       // clear before setup
       while (this.boxMenu.lastChild) {
          this.boxMenu.removeChild(this.boxMenu.lastChild);
      }
       
+      this._addHeader(node);
+      this._addActionsForNode(node);
+   }
+   
+   _addHeader(node) {
+      const boxMenuHeader = document.createElement("div");
+      const boxMenuHeaderLabel = document.createTextNode(node.id);
+      
+      boxMenuHeader.appendChild(boxMenuHeaderLabel);
+      
+      this.boxMenu.appendChild(boxMenuHeader);
+      
+      return boxMenuHeader;
+   }
+   
+   _addActionsForNode(node) {
+      const type = node.getAttribute("data-type");
       // actions for all nodes
       this._addAction("X", "Close", () => {
          this._hideMenu(node);
       });
       
-      
       // actions for type
+      // TODO move action to controller
+      switch(type) {
+         case NODE.menu: {
+            this._addAction("Add node", "Add node", (e) => {
+               
+               this.appGUI.nodeDrawer.box(e.clientX,e.clientY);
+               
+               this._hideMenu(node);
+            });
+            return;
+         }
+         case NODE.box: {
+            this._addAction("Remove node", "Remove node", () => {
+               
+               this.appGUI.menuController.removeNode(node);
+               this._hideMenu(node);
+            });
+            return;
+         }
+         default:
+      }
    }
    
    _addAction(label, title, func) {
      const boxMenuAction = document.createElement("a");
-     const domLabel = document.createTextNode(label);
+     const boxMenuActionLabel = document.createTextNode(label);
+     const newLine = document.createElement("br");
      
-     boxMenuAction.appendChild(domLabel);
+     boxMenuAction.appendChild(boxMenuActionLabel);
      boxMenuAction.title = title;
      boxMenuAction.onclick = func; 
      
      this.boxMenu.appendChild(boxMenuAction);
+     this.boxMenu.appendChild(newLine);
      
      return boxMenuAction;
    }

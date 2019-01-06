@@ -4,8 +4,8 @@ const APP_CONF = {
       APP_DOM_ID : "app",
       APP_STYLES : [ "css/app/App.css" ],
       APP_SCRIPTS : [ "js/app/util/AppGUIUtil.js", "js/app/controller/ActionController.js", "js/app/controller/DragNodeController.js",
-                  "js/app/controller/MenuController.js", "js/app/controller/NodeController.js", "js/app/gui/NodeDrawer.js", "js/app/gui/MenuDrawer.js",
-                  "js/app/gui/LineDrawer.js", "js/app/AppGUI.js" ]
+                  "js/app/controller/MenuController.js", "js/app/controller/NodeController.js", "js/app/controller/LineController.js",
+                  "js/app/gui/NodeDrawer.js", "js/app/gui/MenuDrawer.js", "js/app/gui/LineDrawer.js", "js/app/AppGUI.js" ]
 };
 
 const APP_CONF_UI = {
