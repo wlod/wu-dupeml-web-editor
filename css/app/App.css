@@ -30,6 +30,17 @@ a {
    margin-top: -2px;
 }
 
+.box:hover .node-sticky-point {
+   visibility: visible;
+}
+
+.node-sticky-point {
+   background-color: #555;
+   visibility: hidden;
+   width: 10px;
+   height: 10px;
+   cursor: pointer;
+}
 
 #box-menu {
    box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.75);

@@ -39,8 +39,7 @@ class WebUtil {
     }
     
     /**
-       * Waiting to load DOM element by selector. Default value for attempt is
-       * 5. Other parameters should be set directly.
+       * Waiting to load DOM element by selector. Default value for attempt is 5. Other parameters should be set directly.
        */
     static waitForDomElement(selector, time, func, attempt) {
         let inAttempt = (typeof attempt !== "undefined" && attempt !== null) ? attempt : 5;
@@ -70,5 +69,9 @@ class WebUtil {
        }
        return null;
     }
+    
+    static hasClass(element, className) {
+       return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
+   }
     
 }

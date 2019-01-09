@@ -26,14 +26,14 @@ class NodeDrawer {
       box.style.top = y + APP_CONF_UI.UNIT;
       box.style.left = x + APP_CONF_UI.UNIT;
       
-      box.className = NODE.box;
-      
+      box.setAttribute("class", NODE.box);
       box.setAttribute("id", this._getId(NODE.box));
       box.setAttribute("data-node-from", "");
       box.setAttribute("data-node-to", "");
       box.setAttribute("data-lines", "");
       box.setAttribute("data-type", NODE.box);
       
+      this._addStickyPoint(box);
       
       this.appGUI.dragNodeController.applyDraggable(box);
       this.appGUI.nodeController.applyNodeController(box);
@@ -46,6 +46,16 @@ class NodeDrawer {
    nodeCounter() {
       return this.nodeCounter;
    };
+   
+   _addStickyPoint(domElement) {
+      
+      const stickyPoint = document.createElement("div");
+      stickyPoint.style.position = "relative";
+      stickyPoint.style.zIndex = APP_CONF_UI.NODE_STICKY_POINT_Z_INDEX;
+      stickyPoint.setAttribute("class", "node-sticky-point");
+      
+      domElement.appendChild(stickyPoint);
+   }
    
    _getId(type) {
       return type + this.nodeCounter;

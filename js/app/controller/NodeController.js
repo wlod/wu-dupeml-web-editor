@@ -7,10 +7,25 @@ class NodeController {
    };
    
    applyNodeController(node) {
-      node.addEventListener('dblclick', (e) => this._addNodeActions(e, node), false);
+      
+      node.childNodes.forEach( childNode =>  {
+         if(WebUtil.hasClass(childNode, "node-sticky-point")) {
+            childNode.addEventListener('click', (e) => this._addStickyPointAction(e, childNode), false);
+         }
+      });
+      
+      node.addEventListener('dblclick', (e) => this._addDbclikcNodeActions(e, node), false);
    };
    
-   _addNodeActions(e, node) {
+   _addStickyPointAction(e, node) {
+      if(this.appGUI.actionController.registerAndCheckIsAvailable(e, "node-sticky-point") === false) {
+         return;
+      }
+      
+      console.log("do some node-sticky-point action");
+   };
+   
+   _addDbclikcNodeActions(e, node) {
       if(this.appGUI.actionController.registerAndCheckIsAvailable(e, "node") === false) {
          return;
       }
@@ -20,6 +35,6 @@ class NodeController {
       const y = node.getBoundingClientRect().top;
       
       const menuBox = this.appGUI.menuDrawer.showHideBoxMenuByNode(x,y,node);
-   }
+   };
    
 }
